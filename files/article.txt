@@ -65,3 +65,95 @@ Jaxon Smith-Njigba under 93.5 yards: This is a scary one. JSN was amazing this s
 Coin toss is heads (-102): Last year, tails didn’t fail. With that win, tails leads 31-28 over heads in the Super Bowl coin toss history. This has to come back to the middle, right?
 
 Last week: 1-1
+
+The new sum is in addition to $1.03 billion from Ottawa announced in January 2025.
+
+Last November, the Crown corporation said it would need another bailout in short order as the January 2025 amount expected to carry it through to the end of the fiscal year in March would be used up by the end of 2025.
+
+Canada Post said it needed access to short-term financing for the next 12 months.
+
+The federal government said the temporary support is to ensure service is maintained while the organization initiates reforms to make it viable long-term.
+
+"While Canada Post’s legislated mandate requires it to be financially self-sustaining, the corporation has accumulated significant losses in recent years, making clear that maintaining the status quo is not an option and that a clear plan is needed to restore long-term stability," Public Services and Procurement Canada said in a statement on Thursday.
+
+This report by The Canadian Press was first published Feb. 7, 2026.
+
+The Canadian Press
+
+Canada Post and the Canadian Union of Postal Workers (CUPW) have reached a tentative new labour agreement.
+
+The union’s executive is recommending that members accept the deal in a ratification vote set to take place in early 2026.
+
+Canada Post and CUPW have agreed that no strike or lockout action will take place during the ratification process.
+The $520B Identity Pivot: Why Quantum-Safe Defense is the New Tech Frontier
+Issued on behalf of QSE - Quantum Secure Encryption Corp.
+
+
+VANCOUVER – Baystreet.ca News Commentary — The digital perimeter has officially vanished. As autonomous systems take over the enterprise, the global AI-driven cybersecurity market is projected to rocket from $35.40 billion today toward a staggering $167.77 billion by 2035[1]. With machine identities now outnumbering humans 82-to-1 and nearly 84% of organizations suffering identity breaches last year, the battleground has shifted to the "identity governance" required to protect every human and machine in the system[2]. This urgent need to secure the autonomous enterprise drives the 2026 investment case for Quantum Secure Encryption Corp. (QSE) (CSE: QSE) (OTCQB: QSEGF) (FSE: VN8), Palo Alto Networks (NASDAQ: PANW), Alphabet, Inc. (NASDAQ: GOOG, SailPoint (NASDAQ: SAIL), and CrowdStrike (NASDAQ: CRWD).
+
+The scale of this spending surge is massive, with global cybersecurity investment forecast to exceed $520 billion annually in 2026[3]. Analysts warn that non-human identities will become the primary target for breaches this year, as billions of over-permissioned machine identities create a massive attack surface that legacy tools simply cannot protect[4]. For investors, this represents a major rotation into the quantum-resilient infrastructure required to secure the high-speed, automated economy of tomorrow.
+
+Quantum Secure Encryption Corp. (QSE) (CSE: QSE) (OTCQB: QSEGF) (FSE: VN8) is kicking off the new year with a clear signal to shareholders that it is scaling for execution. In a recently released corporate update, the company confirmed a significant expansion of its global footprint, now maintaining an operational presence across three regions and five countries. This increase in "boots on the ground" is not just about headcount. It represents a calculated build-out of sales, engineering, finance, and customer success infrastructure in North America and the Asia-Pacific region designed to support the onboarding of institutional clients.
+
+This operational growth aligns perfectly with the company's aggressive entry into the Indonesian market. By partnering with NUSA Networks and Porta Nusa, QSE has secured immediate access to government, financial services, and enterprise sectors in a region that is rapidly modernizing its digital security. NUSA Networks acts as a powerful force multiplier here. As one of Indonesia's premier system integrators, they bring over a decade of experience and a track record of more than 150 major projects, effectively fast-tracking QSE's technology into critical national infrastructure.
+
+"NUSA Networks and Porta Nusa are exactly the type of partners we want representing QSE in strategic international markets," said Ted Carefoot, CEO of QSE.
+
+The strategic fit is essential for rapid deployment.
+
+Carefoot emphasized, "Their deep expertise in cybersecurity, long-standing relationships with government and enterprise clients, and proven ability to deploy secure, large-scale systems make them an ideal channel for QSE's quantum-secure data protection solutions."
+
+Beyond the expanding team, the technology stack is robust and market-ready. The company holds Level 2 Certification under the CyberSecure Canada program, and the QSE Group division maintains a distributor agreement with Enzo Plus to represent these technologies across 300 channel partners in Southeast Asia.
+
+This network complements the qREK Software Development Kit, which allows enterprises to generate quantum-resilient encryption keys backed by authentic quantum entropy. The platform supports AES, RSA, and NIST-recommended post-quantum algorithms built on a zero-trust architecture.
+
+Furthermore, QSE is capturing the secure communications market with QSE-Chat, a mobile application currently available on the Apple App Store and Google Play Store for enterprise clients.
+
+With the global post-quantum cryptography market projected to reach $17.69 billion by 2034, QSE is positioning itself to capture market share early. Backed by a recent C$2.8 million financing round, the company is fully funded and operationally ready to execute on this global roadmap in 2026.
+
+
+CONTINUED… Read this and more news for QSE - Quantum Secure Encryption Corp. at: https://usanewsgroup.com/2024/04/26/the-currency-of-tomorrow-why-investing-in-cutting-edge-ai-recognition-tech-could-mean-big-money/
+
+
+Palo Alto Networks (NASDAQ: PANW) and Alphabet, Inc. (NASDAQ: GOOG, GOOGL) through Google Cloud have announced a landmark partnership expansion to enable secure development and deployment of AI solutions by combining Google Cloud's AI infrastructure with Prisma AIRS, Palo Alto Networks' comprehensive AI security platform. The collaboration addresses findings from Palo Alto Networks' December 2025 State of Cloud Report showing 99% of respondents experienced at least one attack on AI infrastructure over the past year as enterprises dramatically expand cloud usage for AI applications.
+
+"Every board is asking how to harness AI's power without exposing the business to new threats," said BJ Jenkins, President of Palo Alto Networks. "This partnership answers that question. We're removing the friction between security and development, providing a unified platform where the most advanced security is simply a native part of building what's next. Together with Google, we are embedding our AI-powered security deep into the Google Cloud fabric, turning the platform itself into a proactive defense system."
+
+The enhanced partnership delivers end-to-end AI security from code to cloud including protection for live AI workloads on Vertex AI and Agent Engine with Prisma AIRS, next-generation software firewall capabilities through VM-Series integration, and AI-driven SASE platform with Prisma Access running on Google's network.
+
+"Enterprises are increasingly turning to Google Cloud and Palo Alto Networks to secure their applications and data — together and in a seamless way," said Matt Renner, President and Chief Revenue Officer at Google Cloud. "This latest expansion of our partnership will ensure that our joint customers have access to the right solutions to secure their most critical AI infrastructure and develop new AI agents with security built in from the start."
+
+Building on a history including 75 joint integrations and $2 billion in sales through Google Cloud Marketplace, Palo Alto Networks is expanding commitment to run security platforms on Google Cloud infrastructure in a new multibillion-dollar agreement while using Vertex AI platform and Gemini LLMs to power its copilots.
+
+SailPoint (Nasdaq: SAIL) and CrowdStrike (NASDAQ: CRWD) have announced integrations between the SailPoint Identity Security Cloud and the CrowdStrike Falcon platform to enable shared data and automated workflows across identity and security systems. The integrations connect SailPoint's identity governance capabilities with Falcon Next-Gen Identity Security, Falcon Next-Gen SIEM, and Falcon Fusion SOAR to improve visibility and accelerate response to identity-based threats through correlated threat intelligence and automated remediation actions.
+
+"Adding identity context to Security Operations Center workflows helps security teams understand not only what is happening, but who is involved and what access may be affected," said Chandra Gnanasambandam, EVP of Product and CTO at SailPoint. "Through integrations with the CrowdStrike Falcon platform, SailPoint customers can connect identity and threat data to support faster, more informed security decisions."
+
+The collaboration enables organizations to apply CrowdStrike identity risk insights within SailPoint for dynamic access decisions, ingest SailPoint identity data into Falcon Next-Gen SIEM for threat correlation, and leverage Falcon Fusion SOAR to trigger SailPoint remediation actions including account disabling or access revocation.
+
+"Our customers value choice and interoperability," said Chris Stewart, VP of technology and cloud ecosystem alliances at CrowdStrike. "These integrations make it easy to connect SailPoint with the Falcon platform, bringing identity context into threat detection and response workflows so security teams can act with greater speed and confidence."
+
+Article Sources: https://usanewsgroup.com/2024/04/26/the-currency-of-tomorrow-why-investing-in-cutting-edge-ai-recognition-tech-could-mean-big-money/
+
+CONTACT:
+
+
+Baystreet.ca
+
+cs@baystreet.ca
+
+(805) 649-0042
+
+
+DISCLAIMER: Nothing in this publication should be considered as personalized financial advice. We are not licensed under securities laws to address your particular financial situation. No communication by our employees to you should be deemed as personalized financial advice. Please consult a licensed financial advisor before making any investment decision. This is a paid advertisement and is neither an offer nor recommendation to buy or sell any security. We hold no investment licenses and are thus neither licensed nor qualified to provide investment advice. The content in this report or email is not provided to any individual with a view toward their individual circumstances. Baystreet.ca is owned by Baystreet.ca Media Corp. (“BAY”). This article is being distributed for Market IQ Media Group, Inc. (“MIQ”). MIQ has been paid a fee for Quantum Security Encryption Corp. (QSE) advertising and digital media from the company directly. BAY has not been paid a fee for Quantum Security Encryption Corp. (QSE) advertising or digital media, but the owner/operators of BAY also co-owns MIQ. There may be 3rd parties who may have shares QSE - Quantum Secure Encryption Corp., and may liquidate their shares which could have a negative effect on the price of the stock. This compensation constitutes a conflict of interest as to our ability to remain objective in our communication regarding the profiled company. Because of this conflict, individuals are strongly encouraged to not use this publication as the basis for any investment decision. The owner/operator of MIQ own shares of Quantum Security Encryption Corp. (QSE) which were purchased as a part of a private placement. MIQ reserves the right to buy and sell, and will buy and sell shares of QSE - Quantum Secure Encryption Corp. at any time thereafter without any further notice. We also expect further compensation as an ongoing digital media effort to increase visibility for the company, no further notice will be given, but let this disclaimer serve as notice that all material disseminated by MIQ has been approved by the above mentioned company; this is a paid advertisement, and we own shares of the mentioned company that we will sell, and we also reserve the right to buy shares of the company in the open market, or through further private placements and/or investment vehicles. While all information is believed to be reliable, it is not guaranteed by us to be accurate. Individuals should assume that all information contained in our newsletter is not trustworthy unless verified by their own independent research. Also, because events and circumstances frequently do not occur as expected, there will likely be differences between any predictions and actual results. Always consult a licensed investment professional before making any investment decision. Be extremely careful, investing in securities carries a high degree of risk; you may likely lose some or all of the investment.
+
+
+SOURCES CITED:
+
+1. https://www.precedenceresearch.com/artificial-intelligence-in-cybersecurity-market
+
+2. https://seceon.com/zero-trust-ai-security-the-comprehensive-guide-to-next-generation-cybersecurity-in-2026/
+
+3. https://cybersecurityventures.com/official-2026-cybersecurity-market-report-predictions-and-statistics/
+
+4. https://www.tenable.com/blog/cybersecurity-snapshot-2026-cyber-predictions-ai-security-agentic-ai-custom-ai-tools-automated-remediation-identity-security-cloud-risk-1-2-2026
