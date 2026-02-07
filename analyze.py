@@ -1,30 +1,36 @@
-#Welcome User
 from random_username.generate import generate_username
 
-#Welcome User
 def welcomeUser():
     print("\nWelcome to the text analysis tool, I will mine and analyze a body of text from a file you give me!")
 
-#Get username
 def getUsername():
-    #Print a message, prompting user to input their username
-    usernameFromInput = input("\nTo begin, please enter your username\n")
-    
-    if len(usernameFromInput) < 5 or not usernameFromInput.isidentifier():
-        return usernameFromInput;
-    else:
-        print("Your username must be atleast 5 characters long, alphanumerics only (a-z/A-Z/0-9), have no spaces, and cannot start with numbers! ")
-        print("Assigning new username: ")
-        return usernameFromInput;
+    maxAttempts = 3
+    attempts = 0
 
-#Great th User
-def greatUser(name):
-    print("Hello, " + name )
+    while attempts < maxAttempts:
+        if attempts == 0:
+            inputPrompt = "\nTo begin, please enter your username:\n"
+        else:
+            inputPrompt = "\nPlease try again:\n"
 
-def runProgram(): #calling functions in a function
-    welcomeUser();
+        usernameFromInput = input(inputPrompt)
+
+        # Validate username
+        if len(usernameFromInput) >= 5 and usernameFromInput.isidentifier():
+            return usernameFromInput
+        else:
+            print("Username must be at least 5 characters, alphanumeric/underscore only, no spaces, and cannot start with a number.")
+            attempts += 1
+
+    print(f"\nExhausted all {maxAttempts} attempts, assigning a username instead...")
+    return generate_username()[0]
+
+def greetUser(name):
+    print("Hello,", name)
+
+def runProgram():
+    welcomeUser()
     username = getUsername()
-    greatUser(username)
+    greetUser(username)
 
-
-runProgram();
+runProgram()
