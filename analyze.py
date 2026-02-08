@@ -1,6 +1,8 @@
 from random_username.generate import generate_username
 import nltk
+from nltk.corpus import wordnet
 from nltk.tokenize import word_tokenize, sent_tokenize
+nltk.download('averaged_perceptron_tagger_eng')
 from nltk.stem import WordNetLemmatizer
 nltk.download('wordnet')
 wordLemmatizer = WordNetLemmatizer()
@@ -71,15 +73,33 @@ def getWordsPerSentence(sentences):
     return totalWords/len(sentences)
 
 
-# Filter raw tokized word list to only include
-# only valid English words
-def cleaensedWordList(words):
+# Convert part of speech from pos_tag function
+# into wordnet compactible pos tag
+posToWordnetTag = {
+    "J": wordnet.ADJ,
+    "V": wordnet.VERB,
+    "N": wordnet.NOUN,
+    "R": wordnet.ADV
+}
+def treebankPosToWordnetPos(partOfSpeech):
+    posFirstChar = partOfSpeech[0]
+    if partOfSpeech in posToWordnetTag:
+        return posToWordnetTag[posFirstChar]
+    return wordnet.NOUN
+
+# Convert raw list of (word, POS) tuple to a list of strings
+# that only inlcude valid English word
+def cleansedWordList(posTaggedWordTuples):
     cleansedWords =[]
     invalidWordPartern = "[^a-zA-Z-+]"
-    for word in words:
+    for posTaggedWordTuple in posTaggedWordTuples:
+       
+        word =posTaggedWordTuple[0]
+        pos = posTaggedWordTuple[1]
+        
         cleansedWord = word.replace(".", "").lower()
         if (not re.search(invalidWordPartern, cleansedWord)) and len(cleansedWord) > 1:
-            cleansedWords.append(wordLemmatizer.lemmatize(cleansedWord))
+            cleansedWords.append(wordLemmatizer.lemmatize(cleansedWord, treebankPosToWordnetPos(pos)))
     return cleansedWords
 
 
@@ -94,14 +114,14 @@ articleSentences = tokenizeSentences(articleTextRaw)
 artticleWords = tokenizeWords(articleSentences)
 
 # Get Sentence Analytics
-stockSearchPartern = "[0-9]| [%$£€] | thousand | million | billion | trillion"
+stockSearchPartern = "[0-9]|[%$£€]|thousand|million|billion|trillion"
 keySentences = extractKeySentences(articleSentences, stockSearchPartern)
 wordsPerSentence = getWordsPerSentence(articleSentences)
 
 # Get Word Analytics
-articleWordCleansed = cleaensedWordList(artticleWords)
-
+wordsPosTagged = nltk.pos_tag(artticleWords)
+articleWordCleansed = cleansedWordList(wordsPosTagged)
 #Print for Testing
 print("GOT:")
+print("Normalized words:")
 print(articleWordCleansed)
-
