@@ -2,6 +2,7 @@ from random_username.generate import generate_username
 import re
 import nltk
 from nltk.corpus import wordnet, stopwords
+from wordcloud import WordCloud
 nltk.download('wordnet')
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize, sent_tokenize
@@ -131,7 +132,21 @@ wordsPerSentence = getWordsPerSentence(articleSentences)
 # Get Word Analytics
 wordsPosTagged = nltk.pos_tag(artticleWords)
 articleWordCleansed = cleansedWordList(wordsPosTagged)
+
+
+#Generate wordcloud
+separator = " "
+wordcloud =WordCloud(
+    width=1000,
+    height=700,
+    random_state=1,
+    background_color="salmon",
+    colormap="Pastel1",
+    collocations=False
+).generate(separator.join(articleWordCleansed))
+wordcloud.to_file("result/wordcloud.png")
 #Print for Testing
-print("GOT:")
-print("Normalized words:")
-print(articleWordCleansed)
+#print("GOT:")
+print("DONE")
+# print("Normalized words:")
+# print(articleWordCleansed)
