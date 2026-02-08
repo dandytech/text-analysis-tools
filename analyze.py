@@ -1,12 +1,16 @@
 from random_username.generate import generate_username
+import re
 import nltk
-from nltk.corpus import wordnet
+from nltk.corpus import wordnet, stopwords
+nltk.download('wordnet')
+nltk.download('stopwords')
 from nltk.tokenize import word_tokenize, sent_tokenize
 nltk.download('averaged_perceptron_tagger_eng')
 from nltk.stem import WordNetLemmatizer
-nltk.download('wordnet')
 wordLemmatizer = WordNetLemmatizer()
-import re
+stopWords = set(stopwords.words('english'))
+
+
 
 def welcomeUser():
     print("\nWelcome to the text analysis tool, I will mine and analyze a body of text from a file you give me!")
@@ -73,6 +77,7 @@ def getWordsPerSentence(sentences):
     return totalWords/len(sentences)
 
 
+
 # Convert part of speech from pos_tag function
 # into wordnet compactible pos tag
 posToWordnetTag = {
@@ -82,24 +87,29 @@ posToWordnetTag = {
     "R": wordnet.ADV
 }
 def treebankPosToWordnetPos(partOfSpeech):
-    posFirstChar = partOfSpeech[0]
-    if partOfSpeech in posToWordnetTag:
-        return posToWordnetTag[posFirstChar]
-    return wordnet.NOUN
+    return posToWordnetTag.get(partOfSpeech[0], wordnet.NOUN)
 
 # Convert raw list of (word, POS) tuple to a list of strings
 # that only inlcude valid English word
 def cleansedWordList(posTaggedWordTuples):
-    cleansedWords =[]
-    invalidWordPartern = "[^a-zA-Z-+]"
-    for posTaggedWordTuple in posTaggedWordTuples:
-       
-        word =posTaggedWordTuple[0]
-        pos = posTaggedWordTuple[1]
-        
-        cleansedWord = word.replace(".", "").lower()
-        if (not re.search(invalidWordPartern, cleansedWord)) and len(cleansedWord) > 1:
-            cleansedWords.append(wordLemmatizer.lemmatize(cleansedWord, treebankPosToWordnetPos(pos)))
+    cleansedWords = []
+    invalidWordPattern = r"[^a-zA-Z]"
+
+    for word, pos in posTaggedWordTuples:
+        cleansedWord = word.lower()
+
+        if (
+            len(cleansedWord) > 1
+            and cleansedWord.isalpha()
+            and cleansedWord not in stopWords
+            and not re.search(invalidWordPattern, cleansedWord)
+        ):
+            lemma = wordLemmatizer.lemmatize(
+                cleansedWord,
+                treebankPosToWordnetPos(pos)
+            )
+            cleansedWords.append(lemma)
+
     return cleansedWords
 
 
