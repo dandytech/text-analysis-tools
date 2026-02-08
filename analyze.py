@@ -76,9 +76,8 @@ artticleWords = tokenizeWords(articleSentences)
 # Get Analytics
 stockSearchPartern = "[0-9]| [%$£€] | thousand | million | billion | trillion"
 keySentences = extractKeySentences(articleSentences, stockSearchPartern)
-
+wordsPerSentence = len(artticleWords)/len(articleSentences)
 #Print for Testing
 print("GOT:")
-print(keySentences)
-# for sentenceTest in articleSentences:
-#     print(sentenceTest + "\n")
+print(wordsPerSentence)
+print(artticleWords)
