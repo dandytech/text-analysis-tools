@@ -1,6 +1,5 @@
 from random_username.generate import generate_username
-import re
-import nltk
+import re, nltk, json
 from nltk.corpus import wordnet, stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from wordcloud import WordCloud
@@ -117,9 +116,9 @@ def cleansedWordList(posTaggedWordTuples):
 
 
 #Get User Details
-# welcomeUser()
-# username = getUsername()
-# greetUser(username)
+welcomeUser()
+username = getUsername()
+greetUser(username)
 
 
 articleTextRaw = getArticleText()
@@ -138,6 +137,7 @@ articleWordCleansed = cleansedWordList(wordsPosTagged)
 
 #Generate wordcloud
 separator = " "
+wordCloudFilePath = "result/wordcloud.png"
 wordcloud =WordCloud(
     width=1000,
     height=700,
@@ -146,11 +146,29 @@ wordcloud =WordCloud(
     colormap="Pastel1",
     collocations=False
 ).generate(separator.join(articleWordCleansed))
-wordcloud.to_file("result/wordcloud.png")
+wordcloud.to_file(wordCloudFilePath)
 #Print for Testing
 sentimentResult = sentimentAnalyzer.polarity_scores(articleTextRaw)
 
-#print("GOT:")
-print(sentimentResult)
-# print("Normalized words:")
-# print(articleWordCleansed)
+
+# Collate Analysis into one Dictionary
+finalResult = {
+"username": username,
+"data": {
+"keySentences" : keySentences,
+"wordsPerSentence": round(wordsPerSentence, 1),
+"sentiment":sentimentResult,
+"wordCloudFilePath": wordCloudFilePath
+},
+"metadata": {
+    "sentencesAnalyzed": len(articleSentences),
+    "wordsAnalyzed": len(articleWordCleansed),
+}
+
+}
+
+finalResultJson = json.dumps(finalResult,indent=4)
+
+# Print for Test
+print(finalResultJson)
+
