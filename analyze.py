@@ -31,10 +31,6 @@ def greetUser(name):
     print("Hello,", name)
 
 
-
-   
-
-
 #Get Texts from file
 def getArticleText():
    f=open("files/article.txt", "r")
@@ -63,6 +59,14 @@ def extractKeySentences(sentences, stockPartern):
             matchedSentences.append(sentence)
     return matchedSentences
 
+# Get Average Word per Sentence, excluding punctuation
+def getWordsPerSentence(sentences):
+    totalWords =0
+    for sentence in sentences:
+        totalWords =+ len(sentence.split(" "))
+    return totalWords/len(sentences)
+
+
 #Get User Details
 # welcomeUser()
 # username = getUsername()
@@ -76,8 +80,8 @@ artticleWords = tokenizeWords(articleSentences)
 # Get Analytics
 stockSearchPartern = "[0-9]| [%$£€] | thousand | million | billion | trillion"
 keySentences = extractKeySentences(articleSentences, stockSearchPartern)
-wordsPerSentence = len(artticleWords)/len(articleSentences)
+wordsPerSentence = getWordsPerSentence(articleSentences)
 #Print for Testing
 print("GOT:")
 print(wordsPerSentence)
-print(artticleWords)
+
