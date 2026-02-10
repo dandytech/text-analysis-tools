@@ -186,7 +186,7 @@ def extractCompanyNewsArticles(newsArticles):
     return allText.strip()
 
 # ---------------- MAIN ----------------
-def companyStockInfo(tickerSymbol):
+def getCompanyStockInfo(tickerSymbol):
     company = yf.Ticker(tickerSymbol)
 
     basicInfo = extractBasicInfo(company.info)
@@ -194,8 +194,10 @@ def companyStockInfo(tickerSymbol):
     futureEarningDates = getEarningsDate(company)
     newsArticles = getCompanyNews(company)
     newArticlesAllText = extractCompanyNewsArticles(newsArticles)
-    finalResultJson = analyze.analyzedText(newArticlesAllText)
+    newsTextAnalysis = analyze.analyzedText(newArticlesAllText)
+    finalResultJson = (json.dumps(newsTextAnalysis, indent=4))
 
-    print(json.dumps(finalResultJson, indent=4))
+    # Print for Testing
+    print(finalResultJson)
 
-companyStockInfo('MSFT')
+getCompanyStockInfo('MSFT')
