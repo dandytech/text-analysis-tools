@@ -34,18 +34,25 @@ def getEarningsDate(company):
     return futureDates
 
 def getCompanyNews(company):
+    print("RAW news:", company.news)
+
     allNewsArticles = []
+
     for newsDict in company.news or []:
+        print("Item:", newsDict)
+
         title = newsDict.get('title')
         link = newsDict.get('link')
 
         if not title or not link:
+            print("Skipped item")
             continue
 
         allNewsArticles.append({
             'title': title,
             'link': link
         })
+
     return allNewsArticles
 
 
