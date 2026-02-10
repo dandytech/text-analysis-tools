@@ -321,7 +321,8 @@ def analyzedText(textToAnalyze):
 
     sentimentResult = sentimentAnalyzer.polarity_scores(textToAnalyze)
 
-    return {
+    #Collate analysis into one dictionary
+    finalResult ={
         "data": {
             "keySentences": keySentences,
             "wordsPerSentence": round(wordsPerSentence, 1),
@@ -333,6 +334,7 @@ def analyzedText(textToAnalyze):
             "wordsAnalyzed": len(articleWordCleansed)
         }
     }
+    return finalResult
 
 # -------------------- RUN AS SCRIPT --------------------
 def runAsFile():
