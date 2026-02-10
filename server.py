@@ -13,9 +13,13 @@ def analyzeStock(ticker):
     if len(ticker) > 5 or not ticker.isalpha():
         abort(400, description='Invalid ticker symbol')
 
-    # Get analysis
-    analysis = getCompanyStockInfo(ticker)
-
+    try:
+        # Get analysis
+        analysis = getCompanyStockInfo(ticker)
+    except NameError as e:
+        abort(404, e)
+    except:
+         abort(500, description='Something Went Wrong runing the stock analysis.')
     # ALWAYS return something
     return jsonify(analysis)
 
