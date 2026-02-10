@@ -1,13 +1,15 @@
-from flask import Flask, abort, jsonify
+from flask import Flask, abort, jsonify, request
 from stockAnalyze import getCompanyStockInfo
+from analyze import analyzedText
+
 
 app = Flask(__name__)
 
-@app.route('/health')
+@app.route('/health', methods=["GET"])
 def health():
     return 'Health Check'
 
-@app.route('/analyze-stock/<ticker>')
+@app.route('/analyze-stock/<ticker>', methods=["GET"])
 def analyzeStock(ticker):
     # Validate ticker
     if len(ticker) > 5 or not ticker.isalpha():
@@ -22,6 +24,15 @@ def analyzeStock(ticker):
          abort(500, description='Something Went Wrong runing the stock analysis.')
     # ALWAYS return something
     return jsonify(analysis)
+
+@app.route('/analyze-text', methods=["POST"])
+def analyzeTextHandler():
+    data = request.get_json()
+    if "text" not in data or not data["text"]:
+        abort(400, 'No Text provided to analyze.')
+    analysis = analyzedText(data["text"])
+    return analysis
+   
 
 # Main server
 if __name__ == '__main__':
