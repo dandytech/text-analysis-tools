@@ -2,6 +2,10 @@ from flask import Flask, abort, jsonify, request
 from flask_cors import CORS
 from stockAnalyze import getCompanyStockInfo
 from analyze import analyzedText
+import json
+
+f = open('test/result.json')
+stockDataTest = json.load(f)
 
 
 app = Flask(__name__)
@@ -13,6 +17,7 @@ def health():
 
 @app.route('/analyze-stock/<ticker>', methods=["GET"])
 def analyzeStock(ticker):
+    return stockDataTest
     # Validate ticker
     if len(ticker) > 5 or not ticker.isalpha():
         abort(400, description='Invalid ticker symbol')
