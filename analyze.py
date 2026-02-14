@@ -1,3 +1,5 @@
+import base64
+from io import BytesIO
 from random_username.generate import generate_username
 import re
 import json
@@ -147,6 +149,13 @@ def analyzedText(textToAnalyze):
         ).generate(" ".join(articleWordCleansed))
         wordcloud.to_file(wordCloudFilePath)
 
+    imgIo = BytesIO()
+    wordcloud.to_image().save(imgIo, format='PNG')
+    imgIo.seek(0)
+    # Encode the image as base64
+    encodedWordcloud= base64.b64encode(imgIo.getvalue()).decode('utf-8')
+
+    # Run Sentiment Analysis
     sentimentResult = sentimentAnalyzer.polarity_scores(textToAnalyze)
 
     #Collate analysis into one dictionary
@@ -155,7 +164,8 @@ def analyzedText(textToAnalyze):
             "keySentences": keySentences,
             "wordsPerSentence": round(wordsPerSentence, 1),
             "sentiment": sentimentResult,
-            "wordCloudFilePath": wordCloudFilePath
+            "wordCloudFilePath": wordCloudFilePath,
+            "wordcloudImage": encodedWordcloud
         },
         "metadata": {
             "sentencesAnalyzed": len(articleSentences),

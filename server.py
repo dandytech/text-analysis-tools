@@ -17,8 +17,9 @@ def health():
 
 @app.route('/analyze-stock/<ticker>', methods=["GET"])
 def analyzeStock(ticker):
-    return stockDataTest
-    # Validate ticker
+    #return stockDataTest ## comment out this line to make it live
+
+   # Validate ticker
     if len(ticker) > 5 or not ticker.isalpha():
         abort(400, description='Invalid ticker symbol')
 
