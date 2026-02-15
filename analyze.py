@@ -16,6 +16,7 @@ nltk.download("stopwords")
 nltk.download("averaged_perceptron_tagger")
 nltk.download("vader_lexicon")
 nltk.download("punkt")
+nltk.download('punkt_tab')
 
 wordLemmatizer = WordNetLemmatizer()
 stopWords = set(stopwords.words("english"))
