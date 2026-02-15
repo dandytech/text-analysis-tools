@@ -17,20 +17,18 @@ def health():
 
 @app.route('/analyze-stock/<ticker>', methods=["GET"])
 def analyzeStock(ticker):
-    return stockDataTest ## comment out this line to make it live
+   # return stockDataTest ## comment out this line to make it live
 
    # Validate ticker
-    # if len(ticker) > 5 or not ticker.isalpha():
-    #     abort(400, description='Invalid ticker symbol')
-
-    # try:
-        # Get analysis
-    analysis = getCompanyStockInfo(ticker)
-    # except NameError as e:
-    #     abort(404, e)
-    # except:
-    #      abort(500, description='Something Went Wrong runing the stock analysis.')
-    # ALWAYS return something
+    if len(ticker) > 5 or not ticker.isalpha():
+         abort(400, description='Invalid ticker symbol')
+    try:
+        analysis = getCompanyStockInfo(ticker)  # Get analysis
+    except NameError as e:
+        abort(404, e)
+    except Exception as e:
+          print(f"Error running the stock analysis: {e}")
+          abort(500, description='Something Went Wrong runing the stock analysis.')
     return jsonify(analysis)
 
 @app.route('/analyze-text', methods=["POST"])
