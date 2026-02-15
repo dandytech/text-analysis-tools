@@ -194,65 +194,6 @@ def analyzedText(textToAnalyze):
     }
 
     return finalResult
-# def analyzedText(textToAnalyze):
-#     if not textToAnalyze or not textToAnalyze.strip():
-#         return {
-#             "data": {},
-#             "metadata": {
-#                 "error": "No analyzable text",
-#                 "sentencesAnalyzed": 0,
-#                 "wordsAnalyzed": 0
-#             }
-#         }
-
-#     articleSentences = tokenizeSentences(textToAnalyze)
-#     articleWords = tokenizeWords(articleSentences)
-
-#     stockSearchPattern = r"[0-9]|[%$£€]|thousand|million|billion|trillion"
-#     keySentences = extractKeySentences(articleSentences, stockSearchPattern)
-#     wordsPerSentence = getWordsPerSentence(articleSentences)
-
-#     wordsPosTagged = nltk.pos_tag(articleWords)
-#     articleWordCleansed = cleansedWordList(wordsPosTagged)
-
-#     # WordCloud (safe)
-#     wordCloudFilePath = None
-#     if articleWordCleansed:
-#         wordCloudFilePath = "result/wordcloud.png"
-#         wordcloud = WordCloud(
-#             width=1000,
-#             height=700,
-#             random_state=1,
-#             background_color="salmon",
-#             colormap="Pastel1",
-#             collocations=False
-#         ).generate(" ".join(articleWordCleansed))
-#         wordcloud.to_file(wordCloudFilePath)
-
-#     imgIo = BytesIO()
-#     wordcloud.to_image().save(imgIo, format='PNG')
-#     imgIo.seek(0)
-#     # Encode the image as base64
-#     encodedWordcloud= base64.b64encode(imgIo.getvalue()).decode('utf-8')
-
-#     # Run Sentiment Analysis
-#     sentimentResult = sentimentAnalyzer.polarity_scores(textToAnalyze)
-
-#     #Collate analysis into one dictionary
-#     finalResult ={
-#         "data": {
-#             "keySentences": keySentences,
-#             "wordsPerSentence": round(wordsPerSentence, 1),
-#             "sentiment": sentimentResult,
-#             "wordCloudFilePath": wordCloudFilePath,
-#             "wordcloudImage": encodedWordcloud
-#         },
-#         "metadata": {
-#             "sentencesAnalyzed": len(articleSentences),
-#             "wordsAnalyzed": len(articleWordCleansed)
-#         }
-#     }
-#     return finalResult
 
 # -------------------- RUN AS SCRIPT --------------------
 def runAsFile():
