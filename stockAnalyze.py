@@ -90,25 +90,54 @@ def extractCompanyNewsArticles(newsArticles):
 def getCompanyStockInfo(tickerSymbol):
     company = yf.Ticker(tickerSymbol)
 
-    basicInfo = extractBasicInfo(company.info)
-    # Check if company exist, if not trigger error
-    if not basicInfo["longName"]:
-        raise NameError("Could not find stock info, ticker may delisted or does not exist.")
+    try:
+        info = company.info
+    except Exception as e:
+        raise Exception(f"Failed to fetch company info: {str(e)}")
+
+    if not info:
+        raise NameError("Could not retrieve company info. Ticker may be invalid or API blocked.")
+
+    basicInfo = extractBasicInfo(info)
+
+    if not basicInfo.get("longName"):
+        raise NameError("Could not find stock info, ticker may be delisted or does not exist.")
 
     priceHistory = getPriceHistory(company)
     futureEarningDates = getEarningsDate(company)
     newsArticles = getCompanyNews(company)
     newArticlesAllText = extractCompanyNewsArticles(newsArticles)
     newsTextAnalysis = analyze.analyzedText(newArticlesAllText)
-    
-    finalStockAnalysis = {
+
+    return {
         "basicInfo": basicInfo,
         "priceHistory": priceHistory,
         "futureEarningDates": futureEarningDates,
         "newsArticles": newsArticles,
-        "newsTextAnalysis":newsTextAnalysis
+        "newsTextAnalysis": newsTextAnalysis
     }
-    return finalStockAnalysis
+# def getCompanyStockInfo(tickerSymbol):
+#     company = yf.Ticker(tickerSymbol)
+
+#     basicInfo = extractBasicInfo(company.info)
+#     # Check if company exist, if not trigger error
+#     if not basicInfo["longName"]:
+#         raise NameError("Could not find stock info, ticker may delisted or does not exist.")
+
+#     priceHistory = getPriceHistory(company)
+#     futureEarningDates = getEarningsDate(company)
+#     newsArticles = getCompanyNews(company)
+#     newArticlesAllText = extractCompanyNewsArticles(newsArticles)
+#     newsTextAnalysis = analyze.analyzedText(newArticlesAllText)
+    
+#     finalStockAnalysis = {
+#         "basicInfo": basicInfo,
+#         "priceHistory": priceHistory,
+#         "futureEarningDates": futureEarningDates,
+#         "newsArticles": newsArticles,
+#         "newsTextAnalysis":newsTextAnalysis
+#     }
+#     return finalStockAnalysis
 
 # comapanyStockAnalysis= getCompanyStockInfo('MSFT')
 # print(json.dumps(comapanyStockAnalysis, indent=4))
