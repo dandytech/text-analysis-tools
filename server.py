@@ -5,7 +5,6 @@ from analyze import analyzedText
 import json
 import os
 
-
 # Ensure result folder exists for WordClouds
 os.makedirs("result", exist_ok=True)
 
