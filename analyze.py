@@ -1,6 +1,213 @@
-import base64
-from io import BytesIO
-from random_username.generate import generate_username
+# import base64
+# from io import BytesIO
+# from random_username.generate import generate_username
+# import re
+# import json
+# import nltk
+# from nltk.corpus import wordnet, stopwords
+# from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# from nltk.tokenize import word_tokenize, sent_tokenize
+# from nltk.stem import WordNetLemmatizer
+# from wordcloud import WordCloud
+
+# # -------------------- NLTK SETUP --------------------
+# nltk.download("wordnet")
+# nltk.download("stopwords")
+# nltk.download("averaged_perceptron_tagger")
+# nltk.download("vader_lexicon")
+# nltk.download("punkt")
+# nltk.download('punkt_tab')
+# nltk.download('averaged_perceptron_tagger_eng')
+
+# wordLemmatizer = WordNetLemmatizer()
+# stopWords = set(stopwords.words("english"))
+# sentimentAnalyzer = SentimentIntensityAnalyzer()
+
+# # -------------------- USER FLOW --------------------
+# def welcomeUser():
+#     print("\nWelcome to the text analysis tool, I will mine and analyze a body of text from a file you give me!")
+
+# def getUsername():
+#     maxAttempts = 3
+#     attempts = 0
+
+#     while attempts < maxAttempts:
+#         prompt = "\nTo begin, please enter your username:\n" if attempts == 0 else "\nPlease try again:\n"
+#         usernameFromInput = input(prompt)
+
+#         if len(usernameFromInput) >= 5 and usernameFromInput.isidentifier():
+#             return usernameFromInput
+#         else:
+#             print("Username must be at least 5 characters, alphanumeric/underscore only, no spaces, and cannot start with a number.")
+#             attempts += 1
+
+#     print(f"\nExhausted all {maxAttempts} attempts, assigning a username instead...")
+#     return generate_username()[0]
+
+# def greetUser(name):
+#     print("Hello,", name)
+
+# # -------------------- FILE INPUT --------------------
+# def getArticleText():
+#     with open("files/article.txt", "r", encoding="utf-8") as f:
+#         rawText = f.read()
+#     return rawText.replace("\n", " ").replace("\r", "").strip()
+
+# # -------------------- TOKENIZATION --------------------
+# def tokenizeSentences(rawText):
+#     if not rawText:
+#         return []
+#     return sent_tokenize(rawText)
+
+# def tokenizeWords(sentences):
+#     words = []
+#     for sentence in sentences:
+#         words.extend(word_tokenize(sentence))
+#     return words
+
+# # -------------------- SENTENCE ANALYSIS --------------------
+# def extractKeySentences(sentences, stockPattern):
+#     matchedSentences = []
+#     for sentence in sentences:
+#         if re.search(stockPattern, sentence.lower()):
+#             matchedSentences.append(sentence)
+#     return matchedSentences
+
+# def getWordsPerSentence(sentences):
+#     if not sentences:
+#         return 0
+
+#     totalWords = 0
+#     for sentence in sentences:
+#         totalWords += len(sentence.split())
+
+#     return totalWords / len(sentences)
+
+# # -------------------- WORD CLEANING --------------------
+# posToWordnetTag = {
+#     "J": wordnet.ADJ,
+#     "V": wordnet.VERB,
+#     "N": wordnet.NOUN,
+#     "R": wordnet.ADV
+# }
+
+# def treebankPosToWordnetPos(partOfSpeech):
+#     return posToWordnetTag.get(partOfSpeech[0], wordnet.NOUN)
+
+# def cleansedWordList(posTaggedWordTuples):
+#     cleansedWords = []
+#     invalidWordPattern = r"[^a-zA-Z]"
+
+#     for word, pos in posTaggedWordTuples:
+#         cleansedWord = word.lower()
+
+#         if (
+#             len(cleansedWord) > 1
+#             and cleansedWord.isalpha()
+#             and cleansedWord not in stopWords
+#             and not re.search(invalidWordPattern, cleansedWord)
+#         ):
+#             lemma = wordLemmatizer.lemmatize(
+#                 cleansedWord,
+#                 treebankPosToWordnetPos(pos)
+#             )
+#             cleansedWords.append(lemma)
+
+#     return cleansedWords
+
+
+
+
+
+
+# # -------------------- MAIN ANALYSIS --------------------
+# def analyzedText(textToAnalyze):
+#     if not textToAnalyze or not textToAnalyze.strip():
+#         return {
+#             "data": {},
+#             "metadata": {
+#                 "error": "No analyzable text",
+#                 "sentencesAnalyzed": 0,
+#                 "wordsAnalyzed": 0
+#             }
+#         }
+
+#     # Tokenize
+#     articleSentences = tokenizeSentences(textToAnalyze)
+#     articleWords = tokenizeWords(articleSentences)
+
+#     stockSearchPattern = r"[0-9]|[%$£€]|thousand|million|billion|trillion"
+#     keySentences = extractKeySentences(articleSentences, stockSearchPattern)
+#     wordsPerSentence = getWordsPerSentence(articleSentences)
+
+#     # POS tagging and cleansing
+#     wordsPosTagged = nltk.pos_tag(articleWords)
+#     articleWordCleansed = cleansedWordList(wordsPosTagged)
+
+#     # -------------------------
+#     # WordCloud (Render-safe)
+#     # -------------------------
+#     encodedWordcloud = None
+
+#     if articleWordCleansed:
+#         try:
+#             wordcloud = WordCloud(
+#                 width=1000,
+#                 height=700,
+#                 random_state=1,
+#                 background_color="salmon",
+#                 colormap="Pastel1",
+#                 collocations=False
+#             ).generate(" ".join(articleWordCleansed))
+
+#             imgIo = BytesIO()
+#             wordcloud.to_image().save(imgIo, format="PNG")
+#             imgIo.seek(0)
+
+#             encodedWordcloud = base64.b64encode(
+#                 imgIo.getvalue()
+#             ).decode("utf-8")
+
+#         except Exception as e:
+#             print(f"WordCloud generation failed: {e}")
+#             encodedWordcloud = None
+
+#     # -------------------------
+#     # Sentiment Analysis
+#     # -------------------------
+#     sentimentResult = sentimentAnalyzer.polarity_scores(textToAnalyze)
+
+#     # -------------------------
+#     # Final Result
+#     # -------------------------
+#     finalResult = {
+#         "data": {
+#             "keySentences": keySentences,
+#             "wordsPerSentence": round(wordsPerSentence, 1),
+#             "sentiment": sentimentResult,
+#             "wordcloudImage": encodedWordcloud
+#         },
+#         "metadata": {
+#             "sentencesAnalyzed": len(articleSentences),
+#             "wordsAnalyzed": len(articleWordCleansed)
+#         }
+#     }
+
+#     return finalResult
+
+# # -------------------- RUN AS SCRIPT --------------------
+# def runAsFile():
+#     welcomeUser()
+#     username = getUsername()
+#     greetUser(username)
+
+#     #Extract and tokenize Text
+#     articleTextRaw = getArticleText()
+#     result = analyzedText(articleTextRaw)
+
+#     print(json.dumps(result, indent=2))
+
+
 import re
 import json
 import nltk
@@ -8,121 +215,68 @@ from nltk.corpus import wordnet, stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
-from wordcloud import WordCloud
 
 # -------------------- NLTK SETUP --------------------
-nltk.download("wordnet")
-nltk.download("stopwords")
-nltk.download("averaged_perceptron_tagger")
-nltk.download("vader_lexicon")
-nltk.download("punkt")
-nltk.download('punkt_tab')
-nltk.download('averaged_perceptron_tagger_eng')
+# NOTE: In production, ideally move downloads outside runtime
+nltk.download("wordnet", quiet=True)
+nltk.download("stopwords", quiet=True)
+nltk.download("vader_lexicon", quiet=True)
+nltk.download("punkt", quiet=True)
 
 wordLemmatizer = WordNetLemmatizer()
 stopWords = set(stopwords.words("english"))
 sentimentAnalyzer = SentimentIntensityAnalyzer()
 
-# -------------------- USER FLOW --------------------
-def welcomeUser():
-    print("\nWelcome to the text analysis tool, I will mine and analyze a body of text from a file you give me!")
-
-def getUsername():
-    maxAttempts = 3
-    attempts = 0
-
-    while attempts < maxAttempts:
-        prompt = "\nTo begin, please enter your username:\n" if attempts == 0 else "\nPlease try again:\n"
-        usernameFromInput = input(prompt)
-
-        if len(usernameFromInput) >= 5 and usernameFromInput.isidentifier():
-            return usernameFromInput
-        else:
-            print("Username must be at least 5 characters, alphanumeric/underscore only, no spaces, and cannot start with a number.")
-            attempts += 1
-
-    print(f"\nExhausted all {maxAttempts} attempts, assigning a username instead...")
-    return generate_username()[0]
-
-def greetUser(name):
-    print("Hello,", name)
-
-# -------------------- FILE INPUT --------------------
-def getArticleText():
-    with open("files/article.txt", "r", encoding="utf-8") as f:
-        rawText = f.read()
-    return rawText.replace("\n", " ").replace("\r", "").strip()
-
 # -------------------- TOKENIZATION --------------------
-def tokenizeSentences(rawText):
-    if not rawText:
-        return []
-    return sent_tokenize(rawText)
+def tokenizeSentences(text):
+    return sent_tokenize(text) if text else []
 
 def tokenizeWords(sentences):
-    words = []
-    for sentence in sentences:
-        words.extend(word_tokenize(sentence))
-    return words
+    return [word for sentence in sentences for word in word_tokenize(sentence)]
 
 # -------------------- SENTENCE ANALYSIS --------------------
-def extractKeySentences(sentences, stockPattern):
-    matchedSentences = []
-    for sentence in sentences:
-        if re.search(stockPattern, sentence.lower()):
-            matchedSentences.append(sentence)
-    return matchedSentences
+def extractKeySentences(sentences, pattern):
+    return [s for s in sentences if re.search(pattern, s.lower())]
 
 def getWordsPerSentence(sentences):
     if not sentences:
         return 0
+    total_words = sum(len(s.split()) for s in sentences)
+    return total_words / len(sentences)
 
-    totalWords = 0
-    for sentence in sentences:
-        totalWords += len(sentence.split())
-
-    return totalWords / len(sentences)
-
-# -------------------- WORD CLEANING --------------------
-posToWordnetTag = {
+# -------------------- CLEANING --------------------
+pos_map = {
     "J": wordnet.ADJ,
     "V": wordnet.VERB,
     "N": wordnet.NOUN,
     "R": wordnet.ADV
 }
 
-def treebankPosToWordnetPos(partOfSpeech):
-    return posToWordnetTag.get(partOfSpeech[0], wordnet.NOUN)
+def to_wordnet_pos(tag):
+    return pos_map.get(tag[0], wordnet.NOUN)
 
-def cleansedWordList(posTaggedWordTuples):
-    cleansedWords = []
-    invalidWordPattern = r"[^a-zA-Z]"
+def clean_words(tagged_words):
+    cleaned = []
+    pattern = r"[^a-zA-Z]"
 
-    for word, pos in posTaggedWordTuples:
-        cleansedWord = word.lower()
+    for word, pos in tagged_words:
+        w = word.lower()
 
         if (
-            len(cleansedWord) > 1
-            and cleansedWord.isalpha()
-            and cleansedWord not in stopWords
-            and not re.search(invalidWordPattern, cleansedWord)
+            len(w) > 1
+            and w.isalpha()
+            and w not in stopWords
+            and not re.search(pattern, w)
         ):
-            lemma = wordLemmatizer.lemmatize(
-                cleansedWord,
-                treebankPosToWordnetPos(pos)
+            cleaned.append(
+                wordLemmatizer.lemmatize(w, to_wordnet_pos(pos))
             )
-            cleansedWords.append(lemma)
 
-    return cleansedWords
-
-
-
-
-
+    return cleaned
 
 # -------------------- MAIN ANALYSIS --------------------
-def analyzedText(textToAnalyze):
-    if not textToAnalyze or not textToAnalyze.strip():
+def analyzedText(text):
+    if not text or not text.strip():
         return {
             "data": {},
             "metadata": {
@@ -132,77 +286,44 @@ def analyzedText(textToAnalyze):
             }
         }
 
-    # Tokenize
-    articleSentences = tokenizeSentences(textToAnalyze)
-    articleWords = tokenizeWords(articleSentences)
+    # Tokenization
+    sentences = tokenizeSentences(text)
+    words = tokenizeWords(sentences)
 
-    stockSearchPattern = r"[0-9]|[%$£€]|thousand|million|billion|trillion"
-    keySentences = extractKeySentences(articleSentences, stockSearchPattern)
-    wordsPerSentence = getWordsPerSentence(articleSentences)
+    # Key insights
+    pattern = r"[0-9]|[%$£€]|thousand|million|billion|trillion"
+    key_sentences = extractKeySentences(sentences, pattern)
+    words_per_sentence = getWordsPerSentence(sentences)
 
-    # POS tagging and cleansing
-    wordsPosTagged = nltk.pos_tag(articleWords)
-    articleWordCleansed = cleansedWordList(wordsPosTagged)
+    # POS + cleaning (limit for safety)
+    tagged = nltk.pos_tag(words[:2000])  # prevents memory spikes
+    cleaned_words = clean_words(tagged)
 
-    # -------------------------
-    # WordCloud (Render-safe)
-    # -------------------------
-    encodedWordcloud = None
+    # Sentiment
+    sentiment = sentimentAnalyzer.polarity_scores(text)
 
-    if articleWordCleansed:
-        try:
-            wordcloud = WordCloud(
-                width=1000,
-                height=700,
-                random_state=1,
-                background_color="salmon",
-                colormap="Pastel1",
-                collocations=False
-            ).generate(" ".join(articleWordCleansed))
-
-            imgIo = BytesIO()
-            wordcloud.to_image().save(imgIo, format="PNG")
-            imgIo.seek(0)
-
-            encodedWordcloud = base64.b64encode(
-                imgIo.getvalue()
-            ).decode("utf-8")
-
-        except Exception as e:
-            print(f"WordCloud generation failed: {e}")
-            encodedWordcloud = None
-
-    # -------------------------
-    # Sentiment Analysis
-    # -------------------------
-    sentimentResult = sentimentAnalyzer.polarity_scores(textToAnalyze)
-
-    # -------------------------
-    # Final Result
-    # -------------------------
-    finalResult = {
+    return {
         "data": {
-            "keySentences": keySentences,
-            "wordsPerSentence": round(wordsPerSentence, 1),
-            "sentiment": sentimentResult,
-            "wordcloudImage": encodedWordcloud
+            "keySentences": key_sentences[:10],  # limit output size
+            "wordsPerSentence": round(words_per_sentence, 1),
+            "sentiment": sentiment
         },
         "metadata": {
-            "sentencesAnalyzed": len(articleSentences),
-            "wordsAnalyzed": len(articleWordCleansed)
+            "sentencesAnalyzed": len(sentences),
+            "wordsAnalyzed": len(cleaned_words)
         }
     }
 
-    return finalResult
-
-# -------------------- RUN AS SCRIPT --------------------
+# -------------------- OPTIONAL CLI RUN --------------------
 def runAsFile():
-    welcomeUser()
-    username = getUsername()
-    greetUser(username)
+    print("\nText analysis tool starting...")
 
-    #Extract and tokenize Text
-    articleTextRaw = getArticleText()
-    result = analyzedText(articleTextRaw)
+    try:
+        with open("files/article.txt", "r", encoding="utf-8") as f:
+            text = f.read()
 
-    print(json.dumps(result, indent=2))
+        result = analyzedText(text)
+        print(json.dumps(result, indent=2))
+
+    except FileNotFoundError:
+        print("No input file found.")
